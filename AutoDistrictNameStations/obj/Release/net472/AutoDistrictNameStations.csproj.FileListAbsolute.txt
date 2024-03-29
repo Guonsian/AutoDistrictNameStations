@@ -1,0 +1,9 @@
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.csproj.AssemblyReference.cache
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.AssemblyInfoInputs.cache
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.AssemblyInfo.cs
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.csproj.CoreCompileInputs.cache
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\bin\Release\net472\AutoDistrictNameStations.dll
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\bin\Release\net472\AutoDistrictNameStations.pdb
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.dll
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.pdb
