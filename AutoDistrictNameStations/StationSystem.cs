@@ -18,6 +18,7 @@ namespace AutoDistrictNameStations
     {
 
         private EntityQuery _systemQuery;
+        private NameSystem _gameNameSystem;
         private ILog _log;
         
         protected override void OnCreate()
@@ -25,7 +26,9 @@ namespace AutoDistrictNameStations
             base.OnCreate();
             _log = Mod.log;
             
-            _log.Info("onCreate de station system");
+            _log.Info("onCreate StationSystem");
+            
+            _gameNameSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<Game.UI.NameSystem>();
             
             _systemQuery =  GetEntityQuery(new EntityQueryDesc
             {
@@ -80,9 +83,6 @@ namespace AutoDistrictNameStations
                 return;
             }
             
-            NameSystem gameNameSystem =
-                World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<Game.UI.NameSystem>();
-            
             string districtName = "";
             for (int i = 0; i < buildingEntitiesArray.Length; i++)
             {
@@ -90,17 +90,17 @@ namespace AutoDistrictNameStations
                 {
                     var transportStation = buildingEntitiesArray[i];
                     CurrentDistrict currentDistrict = EntityManager.GetComponentData<CurrentDistrict>(transportStation);
-                    _log.Info(currentDistrict);
-                    string districtDebugName = gameNameSystem.GetDebugName(currentDistrict.m_District);
-                    string districtLabelName = gameNameSystem.GetRenderedLabelName(currentDistrict.m_District);
-                    _log.Info(districtDebugName + "!" + districtLabelName);
+                    
+                    string districtDebugName = _gameNameSystem.GetDebugName(currentDistrict.m_District);
+                    string districtLabelName = _gameNameSystem.GetRenderedLabelName(currentDistrict.m_District);
+
                     if (districtLabelName.Length > 0 && districtDebugName.Contains("District Area"))
                     {
-                        var previousName = gameNameSystem.GetRenderedLabelName(transportStation);
+                        var previousName = _gameNameSystem.GetRenderedLabelName(transportStation);
                         districtName = districtLabelName;
-                        if (!previousName.Contains("|") && !previousName.Contains(","))
+                        if (!previousName.Contains(districtName))
                         {
-                            gameNameSystem.SetCustomName(transportStation, districtName + " | " + previousName);
+                            _gameNameSystem.SetCustomName(transportStation, districtName + " " + previousName);
                         }
 
                     }
@@ -118,11 +118,10 @@ namespace AutoDistrictNameStations
                 {
                     try
                     {
-                        var previousName = gameNameSystem.GetRenderedLabelName(buildingEntitiesArray[i]);
-                        _log.Info("previous name in stop:  " + previousName);
-                        if (!previousName.Contains("|") && !previousName.Contains(","))
+                        var previousName = _gameNameSystem.GetRenderedLabelName(buildingEntitiesArray[i]);
+                        if (!previousName.Contains(districtName))
                         {
-                            gameNameSystem.SetCustomName(buildingEntitiesArray[i], districtName);
+                            _gameNameSystem.SetCustomName(buildingEntitiesArray[i], districtName);
                         }
                     }
                     catch (Exception ex)

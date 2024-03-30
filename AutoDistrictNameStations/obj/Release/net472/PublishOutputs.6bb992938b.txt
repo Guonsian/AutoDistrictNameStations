@@ -1,0 +1,2 @@
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\bin\Release\net472\AutoDistrictNameStations.dll
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\bin\Release\net472\AutoDistrictNameStations.pdb

@@ -7,3 +7,4 @@ C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\bi
 C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\bin\Release\net472\AutoDistrictNameStations.pdb
 C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.dll
 C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.pdb
+C:\Users\Fran\RiderProjects\AutoDistrictNameStations\AutoDistrictNameStations\obj\Release\net472\AutoDistrictNameStations.sourcelink.json

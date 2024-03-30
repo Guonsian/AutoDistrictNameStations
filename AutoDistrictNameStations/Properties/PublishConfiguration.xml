@@ -1,44 +1,49 @@
 ﻿<Publish>
 	<!--Id must be set in order to update existed mod. it is not required for publishing mod for the first time-->
-	<ModId Value="" />
+	<ModId Value="76908" />
 	<!--Name of the mod to display to players-->
 	<DisplayName Value="AutoDistrictNameStations" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="This is a short description" />
+	<ShortDescription Value="A mod that changes stations to match the district Name" />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
-	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
-		# Auto District Name Stations 
-		
-		## Description 
-		
-		This mod will autoname public transport stations to be name of the District where it is placed. This mod also changes the platforms names, therefore in the route information it will actually show which train station (or whatever kind).
+## Description 
 
-		## Usage
+This mod will autoname public transport stations to be name of the District where it is placed. This mod also changes the platforms names, therefore in the route information it will actually show which train station (or whatever kind).
 		
-		* Add a District
-		* Add your station
+This is useful to have 
 		
-		Old stations will only be updated if there is an extension in the platforms (like in the train stations).
+## Usage
+
+- Add a District
+- Add your station
+
+Old stations will only be updated if there is an extension in the platforms (like in the train stations).
+		
+It works for: Bus stations (not signs or shelthers), Train Station, Cargo Train Terminal, Overground Subway Station, Underground Subway Station, Harbor, Cargo Harbor, Airport and International Airport. 
+
 	</LongDescription>
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail.png" />
 	<!--Screenshot, can be set multiple times-->
-	<Screenshot Value="Properties/" />
+	<Screenshot Value="Properties/Thumbnail.png" />
+	<Screenshot Value="Properties/cap1.png" />
+	<Screenshot Value="Properties/cap2.png" />
+	<Screenshot Value="Properties/cap3.png" />
 	<!--Tag, can be set multiple times-->
-	<Tag Value="Transport" />
+	<Tag Value="Code Mod" />
 	<!--Link to the forum post where the mod can be discussed-->
-	<ForumLink Value="" />
+	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.0" />
+	<ModVersion Value="1.0.9" />
 	<!--Recommended version of the base game to use the mod-->
-	<GameVersion Value="1.0.*" />
+	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="" />
+	<ChangeLog Value="Removed the '|' of the stations" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
-	<ExternalLink Type="" Url="" />
+	<ExternalLink Type="github" Url="https://github.com/Guonsian/AutoDistrictNameStations" />
 </Publish>
