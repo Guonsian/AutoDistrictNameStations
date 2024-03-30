@@ -47,13 +47,13 @@ If you want a custom format edit the follwing file and change the format of the 
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.2" />
+	<ModVersion Value="1.2.1" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="The second and following stations of the same type in the same district will get the street's name" />
+	<ChangeLog Value="Bugfixed an issue that prevented some stations to get a custom name" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->

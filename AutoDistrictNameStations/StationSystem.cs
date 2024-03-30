@@ -108,7 +108,15 @@ namespace AutoDistrictNameStations
 
             if (currentDistrict.m_District != Entity.Null)
             {
-                districtLabelName = _gameNameSystem.GetRenderedLabelName(currentDistrict.m_District);
+                try
+                {
+                    districtLabelName = _gameNameSystem.GetRenderedLabelName(currentDistrict.m_District);
+                }
+                catch(Exception _)
+                {
+                    _log.Warn("District label not found:" + _);
+                    districtLabelName = null;
+                }
             }
             else
             {
@@ -137,7 +145,7 @@ namespace AutoDistrictNameStations
                     var transportStation = transportStations[i];
                     var stationDetails = getStationDetail(transportStation); //[0] district [1] stationType
                     districtName = stationDetails[0];
-                    //_log.Info("Station details:" + stationDetails[0] + "--" + stationDetails[1]);
+                    _log.Info("Station details:" + stationDetails[0] + " - " + stationDetails[1]);
                     
                     if (stationDetails[0] != null)
                     {
@@ -147,7 +155,7 @@ namespace AutoDistrictNameStations
                         if (!previousName.Contains(districtName))
                         {
                             var relevantStations = _allStations.ToEntityArray(Allocator.Temp);
-                            //_log.Info("Relevant number stations" + relevantStations.Length);
+                            //_log.Info("Relevant number stations: " + relevantStations.Length);
                             bool isFirstStationInDistrict = true; 
                             for (var j = 0; j < relevantStations.Length; j++)
                             {
