@@ -17,6 +17,7 @@
 
         <!--The file where mod information which is required for publishing mod on PDX mods are stored-->
         <PublishConfigurationPath>Properties\PublishConfiguration.xml</PublishConfigurationPath>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <!--Imports must be after PropertyGroup block-->
@@ -69,5 +70,13 @@
         <None Include="$(ModPropsFile)" Link="Properties\Mod.props"/>
         <None Include="$(ModTargetsFile)" Link="Properties\Mod.targets"/>
     </ItemGroup>
+
+    <Target Name="moveTranslations" AfterTargets="AfterBuild">
+        <ItemGroup>
+            <TranslationFiles Include="lang\*.json"/>
+        </ItemGroup>
+        
+        <Copy SourceFiles="@(TranslationFiles)" DestinationFiles="@(TranslationFiles->'$(DeployDir)\%(RecursiveDir)\lang\%(filename)%(Extension)')"/>
+    </Target>
 
 </Project>

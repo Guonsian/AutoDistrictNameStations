@@ -12,8 +12,6 @@ namespace AutoDistrictNameStations
         public static ILog log { get; } = LogManager.GetLogger(nameof(AutoDistrictNameStations)).SetShowsErrorsInUI(false);
         public static ModOptions modOptions{ get; set; }
         
-        
-        
         public void OnLoad(UpdateSystem updateSystem)
         {
             log.Info(nameof(OnLoad));
@@ -21,8 +19,12 @@ namespace AutoDistrictNameStations
             if (GameManager.instance.modManager.TryGetExecutableAsset(this, out var asset))
                 log.Info($"Current mod asset at {asset.path}");
 
-            modOptions = new ModOptions();
-            AssetDatabase.global.LoadSettings("Mod Options Section", modOptions, new ModOptions());
+            modOptions = new ModOptions(this);
+            modOptions.RegisterInOptionsUI();
+            
+            AssetDatabase.global.LoadSettings("Mod Options Section", modOptions, new ModOptions(this));
+            
+            
             if (modOptions.stationFormat is null || !modOptions.stationFormat.Contains("{district}"))
             {
                 modOptions.stationFormat = "{district} {station}";

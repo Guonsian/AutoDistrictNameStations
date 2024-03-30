@@ -1,0 +1,6 @@
+﻿{
+  "Options.SECTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod]": "Auto District Name Stations",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.mainSection]": "Auto District Name Stations - Settings",
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]": "Stations name format",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]": "You can also change the format in the configuration file %AppData%\\..\\LocalLow\\Colossal Order\\Cities Skylines II\\AutoDistrictNameStations.coc, the {district} is always required"
+}

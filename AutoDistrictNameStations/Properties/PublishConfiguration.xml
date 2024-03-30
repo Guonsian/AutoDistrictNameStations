@@ -11,12 +11,13 @@
 
 This mod will autoname public transport stations to be name of the District where it is placed. This mod also changes the platforms names, therefore in the route information it will actually show which train station (or whatever kind).
 		
-This is useful to have 
+This is useful to make districts more useful, and also to provide more information in transport infoviews. 
 		
 ## Usage
 
-- Add a District
-- Add your station
+- Add a District, changing its name before placing the station.
+- Add a station in the District. 
+- If you already have a station of the same type in that District, the new station will get the name of the street.
 
 Old stations will only be updated if there is an extension in the platforms (like in the train stations).
 		
@@ -24,7 +25,9 @@ It works for: Bus stations (not signs or shelthers), Train Station, Cargo Train 
 		
 ## Custom Format
 		
-Edit the file and change the format of the stations:
+You can select the station's name format in the settings of the mod (in-game settings).
+		
+If you want a custom format edit the follwing file and change the format of the stations:
 		
 ```
 %AppData%\..\LocalLow\Colossal Order\Cities Skylines II\AutoDistrictNameStations.coc
@@ -35,6 +38,7 @@ Edit the file and change the format of the stations:
 	<Thumbnail Value="Properties/Thumbnail.png" />
 	<!--Screenshot, can be set multiple times-->
 	<Screenshot Value="Properties/Thumbnail.png" />
+	<Screenshot Value="Properties/cap4.png" />
 	<Screenshot Value="Properties/cap1.png" />
 	<Screenshot Value="Properties/cap2.png" />
 	<Screenshot Value="Properties/cap3.png" />
@@ -43,13 +47,13 @@ Edit the file and change the format of the stations:
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.1.1" />
+	<ModVersion Value="1.2" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
-	<Dependency Id="" />
+	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Optimize Mod Performance" />
+	<ChangeLog Value="The second and following stations of the same type in the same district will get the street's name" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
