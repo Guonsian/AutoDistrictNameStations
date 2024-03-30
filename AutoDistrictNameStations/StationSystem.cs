@@ -18,13 +18,16 @@ namespace AutoDistrictNameStations
     {
 
         private EntityQuery _systemQuery;
+        private EntityQuery _systemStopsQuery;
         private NameSystem _gameNameSystem;
         private ILog _log;
+        private ModOptions _modOptions;
         
         protected override void OnCreate()
         {
             base.OnCreate();
             _log = Mod.log;
+            _modOptions = Mod.modOptions;
             
             _log.Info("onCreate StationSystem");
             
@@ -38,8 +41,25 @@ namespace AutoDistrictNameStations
                 },
                 Any = new ComponentType[]
                 {
-                    ComponentType.ReadWrite<TransportStation>(),
-                    ComponentType.ReadWrite<Game.Routes.TransportStop>()
+                    ComponentType.ReadOnly<TransportStation>()
+                },
+                None = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<Deleted>(),
+                    ComponentType.ReadOnly<Temp>()
+                }
+            });
+            
+            // we want to use _systemQuery as it will have the station and stops, but we only want the onUpdated with new stops
+            _systemStopsQuery =  GetEntityQuery(new EntityQueryDesc
+            {
+                All = new ComponentType[] 
+                {
+                    ComponentType.ReadOnly<Created>()
+                },
+                Any = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<Game.Routes.TransportStop>()
                 },
                 None = new ComponentType[]
                 {
@@ -49,46 +69,22 @@ namespace AutoDistrictNameStations
                 }
             });
             
-            // we want to use _systemQuery as it will have the station and stops, but we only want the onUpdated with new stops
-            EntityQuery mQueryCreated =  GetEntityQuery(new EntityQueryDesc
-            {
-                All = new ComponentType[] 
-                {
-                    ComponentType.ReadOnly<Created>()
-                },
-                Any = new ComponentType[]
-                {
-                    ComponentType.ReadWrite<TransportStation>(),
-                    ComponentType.ReadWrite<Game.Routes.TransportStop>()
-                },
-                None = new ComponentType[]
-                {
-                    ComponentType.ReadOnly<Deleted>(),
-                    ComponentType.ReadOnly<Temp>()
-                }
-            });
-            
             RequireForUpdate(_systemQuery);
-            RequireForUpdate(mQueryCreated); 
+            RequireForUpdate(_systemStopsQuery); 
         }
         
         protected override void OnUpdate()
         {
             _log.Info("onUpdate StationSystem executed");
             
-            var buildingEntitiesArray = _systemQuery.ToEntityArray(Allocator.Temp);
-
-            if (buildingEntitiesArray.Length <= 1)
-            {
-                return;
-            }
+            var transportStations = _systemQuery.ToEntityArray(Allocator.Temp);
             
             string districtName = "";
-            for (int i = 0; i < buildingEntitiesArray.Length; i++)
+            for (int i = 0; i < transportStations.Length; i++)
             {
                 try
                 {
-                    var transportStation = buildingEntitiesArray[i];
+                    var transportStation = transportStations[i];
                     CurrentDistrict currentDistrict = EntityManager.GetComponentData<CurrentDistrict>(transportStation);
                     
                     string districtDebugName = _gameNameSystem.GetDebugName(currentDistrict.m_District);
@@ -100,7 +96,9 @@ namespace AutoDistrictNameStations
                         districtName = districtLabelName;
                         if (!previousName.Contains(districtName))
                         {
-                            _gameNameSystem.SetCustomName(transportStation, districtName + " " + previousName);
+                            _gameNameSystem.SetCustomName(transportStation,
+                                _modOptions.stationFormat.Replace("{district}", districtName)
+                                    .Replace("{station}", previousName));
                         }
 
                     }
@@ -110,18 +108,18 @@ namespace AutoDistrictNameStations
                     _log.Error($"An error occurred: {ex.Message}");
                 }
             }
-
-            // Set CustonName for all platforms and stops
+            
+            var transportStops = _systemStopsQuery.ToEntityArray(Allocator.Temp);
             if (districtName.Length > 0)
             {
-                for (int i = 0; i < buildingEntitiesArray.Length; i++)
+                for (int i = 0; i < transportStops.Length; i++)
                 {
                     try
                     {
-                        var previousName = _gameNameSystem.GetRenderedLabelName(buildingEntitiesArray[i]);
+                        var previousName = _gameNameSystem.GetRenderedLabelName(transportStops[i]);
                         if (!previousName.Contains(districtName))
                         {
-                            _gameNameSystem.SetCustomName(buildingEntitiesArray[i], districtName);
+                            _gameNameSystem.SetCustomName(transportStops[i], districtName);
                         }
                     }
                     catch (Exception ex)

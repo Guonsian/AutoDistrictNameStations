@@ -21,7 +21,15 @@ This is useful to have
 Old stations will only be updated if there is an extension in the platforms (like in the train stations).
 		
 It works for: Bus stations (not signs or shelthers), Train Station, Cargo Train Terminal, Overground Subway Station, Underground Subway Station, Harbor, Cargo Harbor, Airport and International Airport. 
-
+		
+## Custom Format
+		
+Edit the file and change the format of the stations:
+		
+```
+%AppData%\..\LocalLow\Colossal Order\Cities Skylines II\AutoDistrictNameStations.coc
+```
+		
 	</LongDescription>
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail.png" />
@@ -35,13 +43,13 @@ It works for: Bus stations (not signs or shelthers), Train Station, Cargo Train 
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.0.9" />
+	<ModVersion Value="1.1.1" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Removed the '|' of the stations" />
+	<ChangeLog Value="Optimize Mod Performance" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
