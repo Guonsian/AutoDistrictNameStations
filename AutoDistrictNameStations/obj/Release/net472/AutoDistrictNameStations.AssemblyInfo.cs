@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoDistrictNameStations")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1160e34d9093736c2223874f5d30fe9c5c4fd6ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+343b19e0ccada7a8f66b97a687f7ad0508954931")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoDistrictNameStations")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoDistrictNameStations")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

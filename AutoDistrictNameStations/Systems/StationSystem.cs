@@ -1,26 +1,20 @@
 using System;
 using System.Linq;
-using Colossal.IO.AssetDatabase;
-using Colossal.Json;
+using AutoDistrictNameStations.AuxComponents;
 using Colossal.Logging;
 using Game;
 using Game.Areas;
-using Game.Assets;
 using Game.Buildings;
 using Game.Common;
 using Game.Net;
-using Game.Prefabs;
-using Game.Tools;
 using Game.Routes;
-using Game.SceneFlow;
-using Game.Simulation;
-using Game.UI;
+using Game.Tools;
 using Unity.Collections;
 using Unity.Entities;
 using TransportStation = Game.Buildings.TransportStation;
 
 
-namespace AutoDistrictNameStations
+namespace AutoDistrictNameStations.Systems
 {
     public partial class StationSystem : GameSystemBase
     {
@@ -28,7 +22,6 @@ namespace AutoDistrictNameStations
         private EntityQuery _systemQuery;
         private EntityQuery _systemStopsQuery;
         private EntityQuery _allStations;
-        private NameSystem _gameNameSystem;
         private ILog _log;
         private ModOptions _modOptions;
         
@@ -36,11 +29,9 @@ namespace AutoDistrictNameStations
         {
             base.OnCreate();
             _log = Mod.log;
-            _modOptions = Mod.modOptions;
+            _modOptions = Mod.ModCustomOptions;
             
             _log.Info("onCreate StationSystem");
-            
-            _gameNameSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<Game.UI.NameSystem>();
             
             _systemQuery =  GetEntityQuery(new EntityQueryDesc
             {
@@ -101,7 +92,7 @@ namespace AutoDistrictNameStations
         private string[] getStationDetail(Entity stationEntity)
         {
             CurrentDistrict currentDistrict = EntityManager.GetComponentData<CurrentDistrict>(stationEntity);
-            string station_type = _gameNameSystem.GetDebugName(stationEntity);
+            string station_type = Mod.GameNameSystem.GetDebugName(stationEntity);
             station_type = station_type.Substring(0, station_type.IndexOf(' '));
 
             string districtLabelName;
@@ -110,7 +101,7 @@ namespace AutoDistrictNameStations
             {
                 try
                 {
-                    districtLabelName = _gameNameSystem.GetRenderedLabelName(currentDistrict.m_District);
+                    districtLabelName = Mod.GameNameSystem.GetRenderedLabelName(currentDistrict.m_District);
                 }
                 catch(Exception _)
                 {
@@ -133,6 +124,13 @@ namespace AutoDistrictNameStations
         {
             _log.Info("onUpdate StationSystem executed");
             
+            if (!_modOptions.GetChangeAllowed<FirstDistrictStation>())
+            {
+                return;
+            }
+            
+            var applyTo = _modOptions.GetApplyTo<FirstDistrictStation>();
+            
             var transportStations = _systemQuery.ToEntityArray(Allocator.Temp);
             
             string districtName = "";
@@ -150,27 +148,30 @@ namespace AutoDistrictNameStations
                     if (stationDetails[0] != null)
                     {
                         
-                        var previousName = _gameNameSystem.GetRenderedLabelName(transportStation);
-                        //_log.Info("Previous name:" + previousName);
+                        var previousName = Mod.GameNameSystem.GetRenderedLabelName(transportStation);
+                        _log.Info("Previous name:" + previousName);
                         if (!previousName.Contains(districtName))
                         {
                             var relevantStations = _allStations.ToEntityArray(Allocator.Temp);
-                            //_log.Info("Relevant number stations: " + relevantStations.Length);
-                            bool isFirstStationInDistrict = true; 
-                            for (var j = 0; j < relevantStations.Length; j++)
+                            _log.Info("Relevant number stations: " + relevantStations.Length);
+                            bool isFirstStationInDistrict = true;
+                            if (applyTo == 0)
                             {
-                                var otherStationDetails = getStationDetail(relevantStations[j]);
-                                //_log.Info("Other station details:" + stationDetails[0] + "--" + stationDetails[1]);
-                                if (stationDetails.SequenceEqual(otherStationDetails))
+                                for (var j = 0; j < relevantStations.Length; j++)
                                 {
-                                    isFirstStationInDistrict = false;
-                                    break;
+                                    var otherStationDetails = getStationDetail(relevantStations[j]);
+                                    _log.Info("Other station details:" + stationDetails[0] + "--" + stationDetails[1]);
+                                    if (stationDetails.SequenceEqual(otherStationDetails))
+                                    {
+                                        isFirstStationInDistrict = false;
+                                        break;
+                                    }
                                 }
                             }
-
-                            if (isFirstStationInDistrict) //add new station
+                            
+                            if (isFirstStationInDistrict && applyTo== 0 || applyTo == 1) //add new station
                             {
-                                _gameNameSystem.SetCustomName(transportStation,
+                                Mod.GameNameSystem.SetCustomName(transportStation,
                                     _modOptions.stationFormat.Replace("{district}", districtName)
                                         .Replace("{station}", previousName));
                                 EntityManager.AddComponentData(transportStation, new FirstDistrictStation());
@@ -181,13 +182,13 @@ namespace AutoDistrictNameStations
 
                                 Aggregated aggregated =
                                     EntityManager.GetComponentData<Aggregated>(transportBuilding.m_RoadEdge);
-                                streetName = _gameNameSystem.GetRenderedLabelName(aggregated.m_Aggregate);
+                                streetName = Mod.GameNameSystem.GetRenderedLabelName(aggregated.m_Aggregate);
 
                                 isStreetStation = true;
                                 
                                 if (!previousName.Contains(streetName))
                                 {
-                                    _gameNameSystem.SetCustomName(transportStation,
+                                    Mod.GameNameSystem.SetCustomName(transportStation,
                                         _modOptions.stationFormat.Replace("{district}", streetName)
                                             .Replace("{station}", previousName));
                                 }
@@ -210,19 +211,19 @@ namespace AutoDistrictNameStations
                 {
                     try
                     {
-                        var previousName = _gameNameSystem.GetRenderedLabelName(transportStops[i]);
+                        var previousName = Mod.GameNameSystem.GetRenderedLabelName(transportStops[i]);
                         if (!isStreetStation)
                         {
                             if (!previousName.Contains(districtName) && !isStreetStation)
                             {
-                                _gameNameSystem.SetCustomName(transportStops[i], districtName);
+                                Mod.GameNameSystem.SetCustomName(transportStops[i], districtName);
                             }
                         }
                         else
                         {
                             if (!previousName.Contains(streetName))
                             {
-                                _gameNameSystem.SetCustomName(transportStops[i], streetName);
+                                Mod.GameNameSystem.SetCustomName(transportStops[i], streetName);
                             }
                             
                         }

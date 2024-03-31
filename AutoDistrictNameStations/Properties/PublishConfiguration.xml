@@ -4,30 +4,62 @@
 	<!--Name of the mod to display to players-->
 	<DisplayName Value="AutoDistrictNameStations" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="A mod that changes stations to match the district Name" />
+	<ShortDescription Value="A mod that changes stations and buildings to match the district Name" />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<LongDescription>
-## Description 
+## Description
 
-This mod will autoname public transport stations to be name of the District where it is placed. This mod also changes the platforms names, therefore in the route information it will actually show which train station (or whatever kind).
-		
-This is useful to make districts more useful, and also to provide more information in transport infoviews. 
-		
+The AutoDistrictNameStations mod is a tool designed to enhance the naming conventions within your city in Cities Skylines. It automatically assigns names to transport stations and various buildings based on the district they are placed in. Additionally, it modifies platform names, providing more detailed information in route displays.
+
+This mod serves to optimize district functionality and enhance information accessibility across different views.
+
 ## Usage
 
-- Add a District, changing its name before placing the station.
-- Add a station in the District. 
-- If you already have a station of the same type in that District, the new station will get the name of the street.
+1. **District Creation:** Create a district and customize its name before placing any station or building within it.
 
-Old stations will only be updated if there is an extension in the platforms (like in the train stations).
+2. **Building Placement:** Add a station or building within the designated district.
+
+3. **Automatic Naming:** Upon placement, the station or building will automatically adopt the name of the district. If there's an existing station or building of the same type in the district, it will adopt the name of the street.
+
+Existing stations will only be updated if there are extensions in the platforms (e.g., train stations).
 		
-It works for: Bus stations (not signs or shelthers), Train Station, Cargo Train Terminal, Overground Subway Station, Underground Subway Station, Harbor, Cargo Harbor, Airport and International Airport. 
-		
+If the building is not within a district, it will *not* get a custom name.
+
+## Available Buildings
+
+The mod supports the automatic naming of various building types, including but not limited to:
+
+- Transport Stations: Bus stations (excluding signs or shelters), Train Stations, Cargo Train Terminals, Overground Subway Stations, Underground Subway Stations, Harbors, Cargo Harbors, Airports, and International Airports.
+
+- Healthcare Facilities: as Hospitals
+
+- Emergency Services: Fire Stations, Police Stations
+
+- Educational Facilities: Schools, Universities...
+
+- Shelters
+
+- City Parks
+
+## Available Settings
+
+The mod provides several customizable settings to tailor the naming conventions according to your preferences:
+
+- **Building Name Format:** Select the format for naming buildings.
+
+- **Naming Feature:** Enable or disable automatic naming for different types of buildings.
+
+- **Naming Source:** Choose between using the district name or the street name for each type of building.
+
 ## Custom Format
-		
-You can select the station's name format in the settings of the mod (in-game settings).
-		
-If you want a custom format edit the follwing file and change the format of the stations:
+
+For users seeking further customization, the mod allows for defining custom naming formats:
+
+- Access the mod's in-game settings.
+
+- Select the station's name format according to your preferences.
+
+Alternatively, directly edit the following file to customize the naming format:
 		
 ```
 %AppData%\..\LocalLow\Colossal Order\Cities Skylines II\AutoDistrictNameStations.coc
@@ -41,19 +73,20 @@ If you want a custom format edit the follwing file and change the format of the 
 	<Screenshot Value="Properties/cap4.png" />
 	<Screenshot Value="Properties/cap1.png" />
 	<Screenshot Value="Properties/cap2.png" />
+	<Screenshot Value="Properties/cap5.png" />
 	<Screenshot Value="Properties/cap3.png" />
 	<!--Tag, can be set multiple times-->
 	<Tag Value="Code Mod" />
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.2.1" />
+	<ModVersion Value="1.3" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Bugfixed an issue that prevented some stations to get a custom name" />
+	<ChangeLog Value="Added more compatible Buildings and adding more settings" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
