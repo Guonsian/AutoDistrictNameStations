@@ -46,7 +46,8 @@ namespace AutoDistrictNameStations.Systems
                 None = new ComponentType[]
                 {
                     ComponentType.ReadOnly<Deleted>(),
-                    ComponentType.ReadOnly<Temp>()
+                    ComponentType.ReadOnly<Temp>(),
+                    ComponentType.ReadOnly<OutsideConnection>()
                 }
             });
             

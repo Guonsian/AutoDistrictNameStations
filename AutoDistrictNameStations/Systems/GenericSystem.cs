@@ -8,6 +8,7 @@ using Game.Objects;
 using Game.Tools;
 using Unity.Collections;
 using Unity.Entities;
+using OutsideConnection = Game.Objects.OutsideConnection;
 
 namespace AutoDistrictNameStations.Systems;
 
@@ -42,6 +43,7 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                     ComponentType.ReadOnly<Deleted>(),
                     ComponentType.ReadOnly<Temp>(),
                     ComponentType.ReadOnly<UniqueObject>(), 
+                    ComponentType.ReadOnly<OutsideConnection>()
                 }
             });
             
