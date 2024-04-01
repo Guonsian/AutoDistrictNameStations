@@ -51,7 +51,9 @@ namespace AutoDistrictNameStations
             updateSystem.UpdateBefore<GenericSystem<Hospital, FirstDistrictHospital>>(SystemUpdatePhase.UIUpdate);
             updateSystem.UpdateBefore<GenericSystem<School, FirstDistrictSchool>>(SystemUpdatePhase.UIUpdate);
             updateSystem.UpdateBefore<GenericSystem<DeathcareFacility, FirstDistrictDeathcareFacility>>(SystemUpdatePhase.UIUpdate);
-
+            updateSystem.UpdateBefore<GenericSystem<GarbageFacility, FirstDistrictGarbageFacility>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<PostFacility, FirstDistrictPostFacility>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<ParkingFacility, FirstDistrictParkingFacility>>(SystemUpdatePhase.UIUpdate);
 
         }
 

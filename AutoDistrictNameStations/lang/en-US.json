@@ -17,82 +17,78 @@
     "School Settings",
   "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.shelterSection]":
     "Shelter Settings",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]":
-    "Building name format",
   "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.firestationSection]":
     "Fire Stations Settings",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.garbageSection]":
+    "Garbage facilities Settings",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.postSection]":
+    "Post facilities Settings",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.parkingSection]":
+    "Parking facilities Settings",
+
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]":
+    "Building name format",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]":
     "You can also change the format in the configuration file %AppData%\\..\\LocalLow\\Colossal Order\\Cities Skylines II\\AutoDistrictNameStations.coc, the {district} is always required",
 
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeStations]":
+  "Options.OPTION[Enable]":
     "Enable",
+  "Options.OPTION[ApplyLabel]":
+    "District or street",
+  
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeStations]":
     "Enable change the name of stations",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationsApplyTo]":
-    "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationsApplyTo]":
     "Select the behaviour of assigning names",
-
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeDeathsCare]":
-  "Enable",
+  
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeDeathsCare]":
   "Enable change the name of deaths care facilities",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.deathsCareApplyTo]":
-  "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.deathsCareApplyTo]":
   "Select the behavior of assigning names",
 
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeHospital]":
-  "Enable",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeHospital]":
   "Enable change the name of hospitals",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.hospitalApplyTo]":
-  "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.hospitalApplyTo]":
   "Select the behavior of assigning names",
 
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePark]":
-  "Enable",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePark]":
   "Enable change the name of parks",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.parkApplyTo]":
-  "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.parkApplyTo]":
   "Select the behavior of assigning names",
-  
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePolice]":
-  "Enable",
+
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePolice]":
   "Enable change the name of police stations",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.policeApplyTo]":
-  "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.policeApplyTo]":
   "Select the behavior of assigning names",
 
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeSchool]":
-  "Enable",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeSchool]":
   "Enable change the name of schools",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.schoolApplyTo]":
-  "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.schoolApplyTo]":
   "Select the behavior of assigning names",
 
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeShelter]":
-  "Enable",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeShelter]":
   "Enable change the name of shelters",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.shelterApplyTo]":
-  "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.shelterApplyTo]":
   "Select the behavior of assigning names",
 
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeFirestation]":
-  "Enable",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeFirestation]":
   "Enable change the name of Fire Stations",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.firestationApplayTo]":
-  "District or street",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.firestationApplayTo]":
+  "Select the behavior of assigning names",
+
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeGarbage]":
+  "Enable change the name of Garbage Facilities",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.garbageApplyTo]":
+  "Select the behavior of assigning names",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePost]":
+  "Enable change the name of Post facilities",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.postApplyTo]":
+  "Select the behavior of assigning names",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeParking]":
+  "Enable change the name of Parking facilities",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.parkingApplyTo]":
   "Select the behavior of assigning names"
 }

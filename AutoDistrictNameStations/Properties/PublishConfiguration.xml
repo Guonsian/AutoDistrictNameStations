@@ -9,9 +9,9 @@
 	<LongDescription>
 ## Description
 
-The AutoDistrictNameStations mod is a tool designed to enhance the naming conventions within your city in Cities Skylines. It automatically assigns names to transport stations and various buildings based on the district they are placed in. Additionally, it modifies platform names, providing more detailed information in route displays.
+The AutoDistrictNameStations mod is a tool designed to enhance the naming conventions within your city in Cities Skylines. It automatically assigns names to transport stations and various buildings based on the district they are placed in, this includes buildings like service buildings and parks. Additionally, it modifies platform names, providing more detailed information in route displays.
 
-This mod serves to optimize district functionality and enhance information accessibility across different views.
+This mod serves to enhace the district functionality and give more information across different infoviews.
 
 ## Usage
 
@@ -29,17 +29,21 @@ If the building is not within a district, it will *not* get a custom name.
 
 The mod supports the automatic naming of various building types, including but not limited to:
 
-- Transport Stations: Bus stations (excluding signs or shelters), Train Stations, Cargo Train Terminals, Overground Subway Stations, Underground Subway Stations, Harbors, Cargo Harbors, Airports, and International Airports.
+- *Transport Stations*: Bus stations (excluding signs or shelters), Train Stations, Cargo Train Terminals, Overground Subway Stations, Underground Subway Stations, Harbors, Cargo Harbors, Airports, and International Airports.
 
-- Healthcare Facilities: as Hospitals
+- *Healthcare Facilities*: as Hospitals and deathcare facilities (cemetery), ...
 
-- Emergency Services: Fire Stations, Police Stations
+- *Emergency Services*: Fire Stations, Police Stations
+		
+- *Other facilities*: as gargabe, post and parking facilities
 
-- Educational Facilities: Schools, Universities...
+- *Educational Facilities*: Schools, Universities...
 
-- Shelters
+- *Shelters*
 
-- City Parks
+- *City Parks*
+		
+Unique buildings are excluded.
 
 ## Available Settings
 
@@ -55,7 +59,7 @@ The mod provides several customizable settings to tailor the naming conventions 
 
 For users seeking further customization, the mod allows for defining custom naming formats:
 
-- Access the mod's in-game settings.
+- Access the mod's in-game settings, and the mod settings.
 
 - Select the station's name format according to your preferences.
 
@@ -70,6 +74,7 @@ Alternatively, directly edit the following file to customize the naming format:
 	<Thumbnail Value="Properties/Thumbnail.png" />
 	<!--Screenshot, can be set multiple times-->
 	<Screenshot Value="Properties/Thumbnail.png" />
+	<Screenshot Value="Properties/cap6.png" />
 	<Screenshot Value="Properties/cap4.png" />
 	<Screenshot Value="Properties/cap1.png" />
 	<Screenshot Value="Properties/cap2.png" />
@@ -80,13 +85,13 @@ Alternatively, directly edit the following file to customize the naming format:
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.3" />
+	<ModVersion Value="1.3.4" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Added more compatible Buildings and adding more settings" />
+	<ChangeLog Value="Added Garbage, Post and Parking facilities" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
