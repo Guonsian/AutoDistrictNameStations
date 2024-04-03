@@ -1,3 +1,5 @@
 ﻿.idea/
 .gitconfig
 *.DotSettings.*
+AutoDistrictNameStations/obj/*
+AutoDistrictNameStations/Library/*

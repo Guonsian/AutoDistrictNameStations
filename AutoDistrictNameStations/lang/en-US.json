@@ -25,6 +25,11 @@
     "Post facilities Settings",
   "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.parkingSection]":
     "Parking facilities Settings",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.applyToAll]":
+  "Mod Actions",
+  
+
+  
 
   "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]":
     "Building name format",
@@ -90,5 +95,14 @@
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeParking]":
   "Enable change the name of Parking facilities",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.parkingApplyTo]":
-  "Select the behavior of assigning names"
+  "Select the behavior of assigning names",
+
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.dummyBool]": 
+  "Apply Labels to previous buildings",
+  
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.dummyBool]": 
+          "This process will rename all existing buildings.",
+  
+  "Options.WARNING[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.dummyBool]": 
+  "WARNING: This action will trigger the rename process of already placed stations and buildings. If you have already used this mod in the past it may be an issue with the naming of some stations. Before continuing it is recommended to save a backup of your city, and click the button after restarting the game. \n\n\nBeware that this button have to be triggered ingame, and you may have to restart the game to use it again. In big cities it will take some seconds to process all buildings."
 }

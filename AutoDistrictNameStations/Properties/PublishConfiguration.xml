@@ -69,6 +69,20 @@ Alternatively, directly edit the following file to customize the naming format:
 %AppData%\..\LocalLow\Colossal Order\Cities Skylines II\AutoDistrictNameStations.coc
 ```
 		
+## Renaming all Buildings (Experimental feature)
+		
+What if you already have a map and want to have all the stations and buildings named after a district.
+		
+To do so it is advised to first do a backup of your city (this is just a precaution, there should not be an issue).
+
+Then, restart your game, and load your city. Then go to the game settings, and select the AutoDistrictNameStations mods options.
+		
+Select the options (i.e., what kind of buildings you want to apply the naming process).
+		
+Then go down, and you will see a button called: "APPLY LABELS TO PREVIOUS BUILDINGS", a warning message should come up to confirm that you want to proceed.
+		
+After clickin Yes, it can take the game a few seconds to process all buildings and districts, after that can check whether the buildings have been correctly renamed. As it may happen that the mod was unable the fecth the district name of some buildning, you can load your backup and try again. 
+		
 	</LongDescription>
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail.png" />
@@ -85,13 +99,13 @@ Alternatively, directly edit the following file to customize the naming format:
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.3.5" />
+	<ModVersion Value="1.4" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Fixed a bug while placing outside connections" />
+	<ChangeLog Value="Added a button that renames all existings buildings" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->

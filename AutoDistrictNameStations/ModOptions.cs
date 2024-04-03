@@ -7,10 +7,14 @@ using Game.UI.Widgets;
 namespace AutoDistrictNameStations
 {
     [FileLocation("AutoDistrictNameStations")]
-    [SettingsUIShowGroupName(new [] {section, transportSection, deathscareSection, hospitalSection, parkSection, policeSection, schoolSection, shelterSection, firestationSection, garbageSection, postSection, parkingSection})]
-    public class ModOptions(IMod mod) : ModSetting(mod)
+    [SettingsUIShowGroupName(new[]
     {
-     
+        section, transportSection, deathscareSection, hospitalSection, parkSection, policeSection, schoolSection,
+        shelterSection, firestationSection, garbageSection, postSection, parkingSection, applyToAll
+    })]
+    public class ModOptions(Mod mod) : ModSetting(mod)
+    {
+
         // Define sections 
         public const string section = "mainSection";
         public const string transportSection = "transportSection";
@@ -22,25 +26,28 @@ namespace AutoDistrictNameStations
         public const string shelterSection = "shelterSection";
         public const string firestationSection = "firestationSection";
         public const string garbageSection = "garbageSection";
-        public const string postSection = "postSection"; 
+        public const string postSection = "postSection";
         public const string parkingSection = "parkingSection";
+        public const string applyToAll = "applyToAll";
+
         // Main Section
         [SettingsUIDropdown(typeof(FormatNameOptionsProvider), nameof(FormatNameOptionsProvider.GetOptions))]
         [SettingsUISection(section)]
         public string stationFormat { get; set; } = "";
-        
+
         // Transport stations
         [SettingsUIDisplayName("Enable")]
-        [SettingsUISection(transportSection)] public bool changeStations { get; set; }
+        [SettingsUISection(transportSection)]
+        public bool changeStations { get; set; }
 
         [SettingsUIDisplayName("ApplyLabel")]
         [SettingsUIDropdown(typeof(ApplyToWhatElements), nameof(ApplyToWhatElements.GetOptions))]
         [SettingsUISection(transportSection)]
         public int stationsApplyTo { get; set; } = -1;
-        
+
         // Deaths care settings
         [SettingsUIDisplayName("Enable")]
-        [SettingsUISection(deathscareSection)] 
+        [SettingsUISection(deathscareSection)]
         public bool changeDeathsCare { get; set; }
 
         [SettingsUIDisplayName("ApplyLabel")]
@@ -57,7 +64,7 @@ namespace AutoDistrictNameStations
         [SettingsUIDropdown(typeof(ApplyToWhatElements), nameof(ApplyToWhatElements.GetOptions))]
         [SettingsUISection(hospitalSection)]
         public int hospitalApplyTo { get; set; } = -1;
-        
+
         // Park settings
         [SettingsUIDisplayName("Enable")]
         [SettingsUISection(parkSection)]
@@ -97,8 +104,8 @@ namespace AutoDistrictNameStations
         [SettingsUIDropdown(typeof(ApplyToWhatElements), nameof(ApplyToWhatElements.GetOptions))]
         [SettingsUISection(shelterSection)]
         public int shelterApplyTo { get; set; } = -1;
-        
-        
+
+
         // Firestation settings
         [SettingsUIDisplayName("Enable")]
         [SettingsUISection(firestationSection)]
@@ -108,20 +115,20 @@ namespace AutoDistrictNameStations
         [SettingsUIDropdown(typeof(ApplyToWhatElements), nameof(ApplyToWhatElements.GetOptions))]
         [SettingsUISection(firestationSection)]
         public int firestationApplayTo { get; set; } = -1;
-        
+
         // Garbage settings
         [SettingsUIDisplayName("Enable")]
-        [SettingsUISection(garbageSection)] 
+        [SettingsUISection(garbageSection)]
         public bool changeGarbage { get; set; } = true;
 
         [SettingsUIDisplayName("ApplyLabel")]
         [SettingsUIDropdown(typeof(ApplyToWhatElements), nameof(ApplyToWhatElements.GetOptions))]
         [SettingsUISection(garbageSection)]
         public int garbageApplyTo { get; set; } = 0;
-        
+
         // Post settings
         [SettingsUIDisplayName("Enable")]
-        [SettingsUISection(postSection)] 
+        [SettingsUISection(postSection)]
         public bool changePost { get; set; } = true;
 
         [SettingsUIDisplayName("ApplyLabel")]
@@ -131,13 +138,25 @@ namespace AutoDistrictNameStations
 
         // Post settings
         [SettingsUIDisplayName("Enable")]
-        [SettingsUISection(parkingSection)] 
+        [SettingsUISection(parkingSection)]
         public bool changeParking { get; set; } = true;
 
         [SettingsUIDisplayName("ApplyLabel")]
         [SettingsUIDropdown(typeof(ApplyToWhatElements), nameof(ApplyToWhatElements.GetOptions))]
         [SettingsUISection(parkingSection)]
         public int parkingApplyTo { get; set; } = 0;
+
+        
+        [SettingsUIButton]
+        [SettingsUIConfirmation]
+        [SettingsUISection(applyToAll)]
+        public bool dummyBool {
+            set
+            {
+                mod.NameAllItems();
+            }         
+        }
+        
         
         public override void SetDefaults()
         {

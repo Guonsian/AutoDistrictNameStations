@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AutoDistrictNameStations.AuxComponents;
 using Colossal.Logging;
 using Game;
 using Game.Buildings;
@@ -12,7 +13,7 @@ using OutsideConnection = Game.Objects.OutsideConnection;
 
 namespace AutoDistrictNameStations.Systems;
 
-public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  where TAuxComponent : class, IComponentData, new()
+public partial class GenericSystem<TBuilding, TAuxComponent, Tupdate> : GameSystemBase  where TAuxComponent : class, IComponentData, new()
 {
     
         private EntityQuery _systemQuery;
@@ -30,10 +31,10 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
             
             _systemQuery =  GetEntityQuery(new EntityQueryDesc
             {
-                All = new ComponentType[] 
+                All = typeof(Tupdate) == typeof(Updated) ? new ComponentType[] 
                 {
                     ComponentType.ReadOnly<Created>()
-                },
+                } : new ComponentType[] {},
                 Any = new ComponentType[]
                 {
                     ComponentType.ReadOnly<TBuilding>()
@@ -43,7 +44,8 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                     ComponentType.ReadOnly<Deleted>(),
                     ComponentType.ReadOnly<Temp>(),
                     ComponentType.ReadOnly<UniqueObject>(), 
-                    ComponentType.ReadOnly<OutsideConnection>()
+                    ComponentType.ReadOnly<OutsideConnection>(),
+                    ComponentType.ReadOnly<DistrictNamedBuilding>()
                 }
             });
             
@@ -59,11 +61,35 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                     ComponentType.ReadOnly<Temp>(),
                 }
             });
-            
-            RequireForUpdate(_systemQuery);
+            if (typeof(Tupdate) == typeof(Updated))
+            {
+                RequireForUpdate(_systemQuery);
+            }
+            else
+            {
+                UpdateOperation();
+                EntityQuery dummyQuery = GetEntityQuery(new EntityQueryDesc
+                {
+                    All = new ComponentType[] 
+                    {
+                        ComponentType.ReadOnly<Created>()
+                    },
+                    None = new ComponentType[]
+                    {
+                        ComponentType.ReadOnly<Created>()
+                    }
+                });
+                
+                RequireForUpdate(dummyQuery); // We do not want to trigger an onUpdate, as this is the case for setting ALL labels
+            }
         }
         
         protected override void OnUpdate()
+        {
+            UpdateOperation();
+        }
+        
+        private void UpdateOperation()
         {
 
             if (!_modOptions.GetChangeAllowed<TAuxComponent>())
@@ -112,8 +138,9 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
 
                         
                         EntityManager.AddComponentData(targetBuildingEntities[i], componentData: new TAuxComponent());
+                        EntityManager.AddComponentData(targetBuildingEntities[i], componentData: new DistrictNamedBuilding());
                     }
-                    else //aplayTo == 2
+                    else //applyTo == 2
                     {
                         Building transportBuilding = EntityManager.GetComponentData<Building>(targetBuildingEntities[i]);
 
@@ -126,6 +153,8 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                             Mod.GameNameSystem.SetCustomName(targetBuildingEntities[i],
                                 _modOptions.stationFormat.Replace("{district}", streetName)
                                     .Replace("{station}", previousName));
+                            EntityManager.AddComponentData(targetBuildingEntities[i], componentData: new DistrictNamedBuilding());
+
                         }
                                 
                     }
