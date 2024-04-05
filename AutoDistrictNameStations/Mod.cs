@@ -1,9 +1,7 @@
 ﻿using AutoDistrictNameStations.AuxComponents;
 using AutoDistrictNameStations.Systems;
 using Colossal.IO.AssetDatabase;
-using Colossal.Json;
 using Colossal.Logging;
-using Colossal.Serialization.Entities;
 using Game;
 using Game.Buildings;
 using Game.Common;
@@ -47,19 +45,18 @@ namespace AutoDistrictNameStations
             GameNameSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<Game.UI.NameSystem>();
             
             // In UI.Update as we want to use the Game.UI.NameSystem 
-            updateSystem.UpdateBefore<StationSystem<Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<Park, FirstDistrictPark, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<FireStation, FirstDistrictFireStation, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<PoliceStation, FirstDistrictPoliceStation, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<EmergencyShelter, FirstDistrictShelter, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<Hospital, FirstDistrictHospital, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<School, FirstDistrictSchool, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<DeathcareFacility, FirstDistrictDeathcareFacility, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<GarbageFacility, FirstDistrictGarbageFacility, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<PostFacility, FirstDistrictPostFacility, Updated>>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<ParkingFacility, FirstDistrictParkingFacility, Updated>>(SystemUpdatePhase.UIUpdate);
-
-
+            updateSystem.UpdateBefore<StationSystem>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<Park, FirstDistrictPark>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<FireStation, FirstDistrictFireStation>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<PoliceStation, FirstDistrictPoliceStation>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<EmergencyShelter, FirstDistrictShelter>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<Hospital, FirstDistrictHospital>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<School, FirstDistrictSchool>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<DeathcareFacility, FirstDistrictDeathcareFacility>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<GarbageFacility, FirstDistrictGarbageFacility>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<PostFacility, FirstDistrictPostFacility>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<ParkingFacility, FirstDistrictParkingFacility>>(SystemUpdatePhase.UIUpdate);
+            
             _updateSystem = updateSystem;
         }
 
@@ -70,17 +67,18 @@ namespace AutoDistrictNameStations
 
         public void NameAllItems()
         {
-            _updateSystem.UpdateBefore<StationSystem<object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<Park, FirstDistrictPark, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<FireStation, FirstDistrictFireStation, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<PoliceStation, FirstDistrictPoliceStation, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<EmergencyShelter, FirstDistrictShelter, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<Hospital, FirstDistrictHospital, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<School, FirstDistrictSchool, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<DeathcareFacility, FirstDistrictDeathcareFacility, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<GarbageFacility, FirstDistrictGarbageFacility, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<PostFacility, FirstDistrictPostFacility, object>>(SystemUpdatePhase.UIUpdate);
-            _updateSystem.UpdateBefore<GenericSystem<ParkingFacility, FirstDistrictParkingFacility, object>>(SystemUpdatePhase.UIUpdate);
+            Mod.log.Info("Tying to rename all buildings");
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<StationSystem>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<Park, FirstDistrictPark>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<FireStation, FirstDistrictFireStation>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<PoliceStation, FirstDistrictPoliceStation>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<EmergencyShelter, FirstDistrictShelter>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<Hospital, FirstDistrictHospital>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<School, FirstDistrictSchool>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<DeathcareFacility, FirstDistrictDeathcareFacility>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<GarbageFacility, FirstDistrictGarbageFacility>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<PostFacility, FirstDistrictPostFacility>>().UpdateAll();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GenericSystem<ParkingFacility, FirstDistrictParkingFacility>>().UpdateAll();
         }
     }
 }

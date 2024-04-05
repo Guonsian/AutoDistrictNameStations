@@ -13,10 +13,11 @@ using OutsideConnection = Game.Objects.OutsideConnection;
 
 namespace AutoDistrictNameStations.Systems;
 
-public partial class GenericSystem<TBuilding, TAuxComponent, Tupdate> : GameSystemBase  where TAuxComponent : class, IComponentData, new()
+public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  where TAuxComponent : class, IComponentData, new()
 {
     
         private EntityQuery _systemQuery;
+        private EntityQuery _systemQuery2;
         private EntityQuery _otherRelevantBuildings;
         private ILog _log;
         private ModOptions _modOptions;
@@ -31,10 +32,27 @@ public partial class GenericSystem<TBuilding, TAuxComponent, Tupdate> : GameSyst
             
             _systemQuery =  GetEntityQuery(new EntityQueryDesc
             {
-                All = typeof(Tupdate) == typeof(Updated) ? new ComponentType[] 
+                All = new ComponentType[] 
                 {
                     ComponentType.ReadOnly<Created>()
-                } : new ComponentType[] {},
+                },
+                Any = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<TBuilding>()
+                },
+                None = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<Deleted>(),
+                    ComponentType.ReadOnly<Temp>(),
+                    ComponentType.ReadOnly<UniqueObject>(), 
+                    ComponentType.ReadOnly<OutsideConnection>(),
+                    ComponentType.ReadOnly<DistrictNamedBuilding>()
+                }
+            });
+            
+            _systemQuery2 =  GetEntityQuery(new EntityQueryDesc
+            {
+                All = new ComponentType[] {},
                 Any = new ComponentType[]
                 {
                     ComponentType.ReadOnly<TBuilding>()
@@ -61,27 +79,9 @@ public partial class GenericSystem<TBuilding, TAuxComponent, Tupdate> : GameSyst
                     ComponentType.ReadOnly<Temp>(),
                 }
             });
-            if (typeof(Tupdate) == typeof(Updated))
-            {
-                RequireForUpdate(_systemQuery);
-            }
-            else
-            {
-                UpdateOperation();
-                EntityQuery dummyQuery = GetEntityQuery(new EntityQueryDesc
-                {
-                    All = new ComponentType[] 
-                    {
-                        ComponentType.ReadOnly<Created>()
-                    },
-                    None = new ComponentType[]
-                    {
-                        ComponentType.ReadOnly<Created>()
-                    }
-                });
-                
-                RequireForUpdate(dummyQuery); // We do not want to trigger an onUpdate, as this is the case for setting ALL labels
-            }
+
+            RequireForUpdate(_systemQuery);
+            
         }
         
         protected override void OnUpdate()
@@ -89,7 +89,12 @@ public partial class GenericSystem<TBuilding, TAuxComponent, Tupdate> : GameSyst
             UpdateOperation();
         }
         
-        private void UpdateOperation()
+        public void UpdateAll()
+        {
+            UpdateOperation(true);
+        }
+        
+        private void UpdateOperation(bool allBuildings = false)
         {
 
             if (!_modOptions.GetChangeAllowed<TAuxComponent>())
@@ -101,7 +106,7 @@ public partial class GenericSystem<TBuilding, TAuxComponent, Tupdate> : GameSyst
             
             _log.Info(applyTo);
             
-            var targetBuildingEntities = _systemQuery.ToEntityArray(Allocator.Temp);
+            var targetBuildingEntities = (allBuildings ? _systemQuery2 : _systemQuery).ToEntityArray(Allocator.Temp);
 
             for (int i = 0; i < targetBuildingEntities.Length; i++)
             {

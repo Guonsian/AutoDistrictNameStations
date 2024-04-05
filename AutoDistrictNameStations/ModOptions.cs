@@ -1,6 +1,9 @@
-﻿using AutoDistrictNameStations.AuxComponents;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoDistrictNameStations.AuxComponents;
 using Colossal.IO.AssetDatabase;
 using Game.Modding;
+using Game.SceneFlow;
 using Game.Settings;
 using Game.UI.Widgets;
 
@@ -29,6 +32,8 @@ namespace AutoDistrictNameStations
         public const string postSection = "postSection";
         public const string parkingSection = "parkingSection";
         public const string applyToAll = "applyToAll";
+
+        private Mod _mod = mod;
 
         // Main Section
         [SettingsUIDropdown(typeof(FormatNameOptionsProvider), nameof(FormatNameOptionsProvider.GetOptions))]
@@ -153,7 +158,7 @@ namespace AutoDistrictNameStations
         public bool dummyBool {
             set
             {
-                mod.NameAllItems();
+                _mod.NameAllItems();
             }         
         }
         
@@ -282,12 +287,20 @@ namespace AutoDistrictNameStations
     {
         public static DropdownItem<string>[] GetOptions()
         {
-            return new[]
+            var optionsList = new List<DropdownItem<string>>
             {
                 new DropdownItem<string> { value = "{district} {station}", displayName = "{district} {station}" },
                 new DropdownItem<string> { value = "{district} | {station}", displayName = "{district} | {station}" },
                 new DropdownItem<string> { value = "{district}'s {station}", displayName = "{district}'s {station}" }
             };
+
+            if (GameManager.instance.localizationManager.activeLocaleId == "es-ES")
+            {
+                optionsList.Add(new DropdownItem<string>
+                    { value = "{station} de {district}", displayName = "{station} de {district}" }
+                );
+            }
+            return optionsList.ToArray();
         }
     }
     
@@ -295,12 +308,34 @@ namespace AutoDistrictNameStations
     {
         public static DropdownItem<int>[] GetOptions()
         {
-            return new[]
+            var optionsList = new List<DropdownItem<int>> { };
+            if (GameManager.instance.localizationManager.activeLocaleId == "es-ES")
             {
-                new DropdownItem<int> { value = 0, displayName = "District name then streetname" },
-                new DropdownItem<int> { value = 1, displayName = "Always district name" },
-                new DropdownItem<int> { value = 2, displayName = "Always street name" }
-            };
+                optionsList.Add(new DropdownItem<int>
+                    { value = 0, displayName = "Nombre distrito, después calle" }
+                );
+                optionsList.Add(new DropdownItem<int>
+                    { value = 1, displayName = "Siempre nombre de distrito" }
+                );
+                optionsList.Add(new DropdownItem<int>
+                    { value = 2, displayName = "Siempre nombre de calle" }
+                );
+            }
+            else
+            {
+                optionsList.Add(new DropdownItem<int>
+                        { value = 0, displayName = "District name then streetname" }
+                );
+                optionsList.Add(new DropdownItem<int>
+                        { value = 1, displayName = "Always district name" }
+                );
+                optionsList.Add(new DropdownItem<int>
+                    { value = 2, displayName = "Always street name" }
+                );
+            }
+            
+
+            return optionsList.ToArray();
         }
     }
     

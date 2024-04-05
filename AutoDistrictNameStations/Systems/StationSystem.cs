@@ -24,29 +24,42 @@ using TransportStop = Game.Prefabs.TransportStop;
 
 namespace AutoDistrictNameStations.Systems
 {
-    public partial class StationSystem<T> : GameSystemBase
+    public partial class StationSystem: GameSystemBase
     {
 
         private EntityQuery _systemQuery;
+        private EntityQuery _systemQuery2;
         private EntityQuery _systemStopsQuery;
+        private EntityQuery _systemStopsQuery2;
         private EntityQuery _allStations;
-        private ILog _log;
-        private ModOptions _modOptions;
+        
         
         protected override void OnCreate()
         {
+            Mod.log.Info("onCreate StationSystem");
             base.OnCreate();
-            _log = Mod.log;
-            _modOptions = Mod.ModCustomOptions;
-            
-            _log.Info("onCreate StationSystem");
             
             _systemQuery =  GetEntityQuery(new EntityQueryDesc
             {
-                All = typeof(T) == typeof(Updated) ? new ComponentType[] 
+                All = new ComponentType[] 
                 {
                     ComponentType.ReadOnly<Updated>()
-                } : new ComponentType[] {},
+                },
+                Any = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<TransportStation>()
+                },
+                None = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<Deleted>(),
+                    ComponentType.ReadOnly<Temp>(),
+                    ComponentType.ReadOnly<OutsideConnection>()
+                }
+            });
+            
+            _systemQuery2 =  GetEntityQuery(new EntityQueryDesc
+            {
+                All = new ComponentType[] {},
                 Any = new ComponentType[]
                 {
                     ComponentType.ReadOnly<TransportStation>()
@@ -62,10 +75,26 @@ namespace AutoDistrictNameStations.Systems
             // we want to use _systemQuery as it will have the station and stops, but we only want the onUpdated with new stops
             _systemStopsQuery =  GetEntityQuery(new EntityQueryDesc
             {
-                All = typeof(T) == typeof(Updated) ? new ComponentType[] 
+                All = new ComponentType[] 
                 {
                     ComponentType.ReadOnly<Created>()
-                } : new ComponentType[] {},
+                },
+                Any = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<Game.Routes.TransportStop>()
+                },
+                None = new ComponentType[]
+                {
+                    ComponentType.ReadOnly<Deleted>(),
+                    ComponentType.ReadOnly<Temp>(), 
+                    ComponentType.ReadOnly<TramStop>(),
+                    ComponentType.ReadOnly<DistrictNamedBuilding>()
+                }
+            });
+            
+            _systemStopsQuery2 =  GetEntityQuery(new EntityQueryDesc
+            {
+                All = new ComponentType[] {},
                 Any = new ComponentType[]
                 {
                     ComponentType.ReadOnly<Game.Routes.TransportStop>()
@@ -93,29 +122,11 @@ namespace AutoDistrictNameStations.Systems
                 }
             });
 
-            if (typeof(T) == typeof(Updated))
-            {
-                Mod.log.Info("Requiering update");
-                RequireForUpdate(_systemQuery);
-                RequireForUpdate(_systemStopsQuery); 
-            }
-            else
-            {
-                updateOperation();
-                EntityQuery dummyQuery = GetEntityQuery(new EntityQueryDesc
-                {
-                    All = new ComponentType[] 
-                    {
-                        ComponentType.ReadOnly<Created>()
-                    },
-                    None = new ComponentType[]
-                    {
-                        ComponentType.ReadOnly<Created>()
-                    }
-                });
-                
-                RequireForUpdate(dummyQuery); // We do not want to trigger an onUpdate, as this is the case for setting ALL labels
-            }
+ 
+            Mod.log.Info("Requiering update");
+            RequireForUpdate(_systemQuery);
+            RequireForUpdate(_systemStopsQuery); 
+            
         }
 
         private string[] getStationDetail(Entity stationEntity)
@@ -134,7 +145,7 @@ namespace AutoDistrictNameStations.Systems
                 }
                 catch(Exception _)
                 {
-                    _log.Warn("District label not found:" + _);
+                    Mod.log.Warn("District label not found:" + _);
                     districtLabelName = null;
                 }
             }
@@ -151,20 +162,25 @@ namespace AutoDistrictNameStations.Systems
 
         protected override void OnUpdate()
         {
-            updateOperation();
+            UpdateOperation();
+        }
+
+        public void UpdateAll()
+        {
+            UpdateOperation(true);
         }
         
-        private void updateOperation()  
+        private void UpdateOperation(bool allStations=false)  
         {
-            _log.Info("UpdateOperation StationSystem executed");
-            if (!_modOptions.GetChangeAllowed<FirstDistrictStation>())
+            Mod.log.Info("UpdateOperation StationSystem executed");
+            if (!Mod.ModCustomOptions.GetChangeAllowed<FirstDistrictStation>())
             {
                 return;
             }
             
-            var applyTo = _modOptions.GetApplyTo<FirstDistrictStation>();
+            var applyTo = Mod.ModCustomOptions.GetApplyTo<FirstDistrictStation>();
             
-            var transportStations = _systemQuery.ToEntityArray(Allocator.Temp);
+            var transportStations = (allStations ? _systemQuery2 : _systemQuery).ToEntityArray(Allocator.Temp);
             
             Dictionary<Entity, string> stations = new Dictionary<Entity, string>();
 
@@ -175,7 +191,7 @@ namespace AutoDistrictNameStations.Systems
                     var transportStation = transportStations[i];
                     var stationDetails = getStationDetail(transportStation); //[0] district [1] stationType
                     string districtName  = stationDetails[0];
-                    _log.Info("Station details:" + stationDetails[0] + " - " + stationDetails[1]);
+                    Mod.log.Info("Station details:" + stationDetails[0] + " - " + stationDetails[1]);
                     
                     if (stationDetails[0] != null)
                     {
@@ -207,7 +223,7 @@ namespace AutoDistrictNameStations.Systems
                             {
                                 Mod.log.Info("Added district name");
                                 Mod.GameNameSystem.SetCustomName(transportStation,
-                                    _modOptions.stationFormat.Replace("{district}", districtName)
+                                    Mod.ModCustomOptions.stationFormat.Replace("{district}", districtName)
                                         .Replace("{station}", previousName));
                                 EntityManager.AddComponentData(transportStation, new FirstDistrictStation());
                                 EntityManager.AddComponentData(transportStation, new DistrictNamedBuilding());
@@ -225,7 +241,7 @@ namespace AutoDistrictNameStations.Systems
                                 {
                                     Mod.log.Info("Added street name");
                                     Mod.GameNameSystem.SetCustomName(transportStation,
-                                        _modOptions.stationFormat.Replace("{district}", streetName)
+                                        Mod.ModCustomOptions.stationFormat.Replace("{district}", streetName)
                                             .Replace("{station}", previousName));
                                     EntityManager.AddComponentData(transportStation, new DistrictNamedBuilding());
                                 }
@@ -242,11 +258,11 @@ namespace AutoDistrictNameStations.Systems
                 }
                 catch (Exception ex) // The transportStops will cause an error as they do not provide currentDistrict component
                 {
-                    _log.Error($"An error occurred: {ex.Message}");
+                    Mod.log.Error($"An error occurred: {ex.Message}");
                 }
             }
             
-            var transportStops = _systemStopsQuery.ToEntityArray(Allocator.Temp);
+            var transportStops = (allStations ? _systemStopsQuery2 : _systemStopsQuery).ToEntityArray(Allocator.Temp);
 
             for (int i = 0; i < transportStops.Length; i++)
             {
@@ -284,7 +300,7 @@ namespace AutoDistrictNameStations.Systems
                 }
                 catch (Exception ex)
                 {
-                    _log.Error($"An error occurred: {ex.Message}");
+                    Mod.log.Error($"An error occurred: {ex.Message}");
                 }
             }
             

@@ -1,6 +1,101 @@
 ﻿{
   "Options.SECTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod]": "Auto District Name Stations",
   "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.mainSection]": "Auto District Name Stations - Ajustes",
-  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]": "Formato del nombre de las estaciones",
-  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]": "También puedes cambiar el formato en el archivo de configuración %AppData%\\..\\LocalLow\\Colossal Order\\Cities Skylines II\\AutoDistrictNameStations.coc, el {district} es siempre necesario"
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]": "Formato del nombre de los edificios",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]": "También puedes cambiar el formato en el archivo de configuración %AppData%\\..\\LocalLow\\Colossal Order\\Cities Skylines II\\AutoDistrictNameStations.coc, el {district} es siempre necesario",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.transportSection]":
+  "Ajustes de Estaciones de Transport",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.deathscareSection]":
+  "Ajustes de Funerarias",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.hospitalSection]":
+  "Ajustes de Centros Médicos",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.parkSection]":
+  "Ajustes de Parques",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.policeSection]":
+  "Ajustes de Comisarías",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.schoolSection]":
+  "Ajustes de Centros educativos",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.shelterSection]":
+  "Ajustes de Refugios",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.firestationSection]":
+  "Ajustes de Estaciones de bomberos",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.garbageSection]":
+  "Ajustes de Vertederos",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.postSection]":
+  "Ajustes de Oficinas de oorreos",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.parkingSection]":
+  "Ajustes de Parkings",
+  "Options.GROUP[AutoDistrictNameStations.AutoDistrictNameStations.Mod.applyToAll]":
+  "Acciones del Mod",
+
+  "Options.OPTION[Enable]":
+  "Habilitar",
+  "Options.OPTION[ApplyLabel]":
+  "Distrito or calle",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeStations]":
+  "Habilita que se pueda cmabiar el nombre de las estaciones",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationsApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeDeathsCare]":
+  "Habilita que se pueda cmabiar el nombre de deaths care facilities",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.deathsCareApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeHospital]":
+  "Habilita que se pueda cmabiar el nombre de Centro Médicos",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.hospitalApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePark]":
+  "Habilita que se pueda cmabiar el nombre de Parques",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.parkApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePolice]":
+  "Habilita que se pueda cmabiar el nombre de Estaciones de Comisarías",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.policeApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeSchool]":
+  "Habilita que se pueda cmabiar el nombre de Centros educativos",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.schoolApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeShelter]":
+  "Habilita que se pueda cmabiar el nombre de refugios",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.shelterApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeFirestation]":
+  "Habilita que se pueda cmabiar el nombre de estaciones de bomberos",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.firestationApplayTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeGarbage]":
+  "Habilita que se pueda cmabiar el nombre de vertederos",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.garbageApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changePost]":
+  "Habilita que se pueda cmabiar el nombre de oficinas de correos",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.postApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeParking]":
+  "Habilita que se pueda cmabiar el nombre de Parking",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.parkingApplyTo]":
+  "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.dummyBool]":
+  "Aplica los nombres a estaciones anteriores",
+
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.dummyBool]":
+  "Este proceso va a renombrar todas las construcciones existentes.",
+
+  "Options.WARNING[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.dummyBool]":
+  "ATENCIÓN: Esta acción va a provocar el proceso para renombrar edificios y estaciones que ya están presente en el mapa. Si previamente habías usado este mod, es posible que algunas estaciones tengan problemas en cuento al nombre. Antes de continuar es recomendado guardar una backup de tu ciudad, y presiona este botón una vez de reeinicar el juego. \n\n\nTen en cuenta que este botón se debe ejecutar estando dentro de la ciudad, y que puede que tengas que reiniciar el juego para usarlo de nuevo. En ciudades grandes puede tardar bastantes segundos para procesar todos los edificios."
+  
 }
