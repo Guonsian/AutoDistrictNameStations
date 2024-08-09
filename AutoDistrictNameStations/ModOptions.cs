@@ -40,6 +40,9 @@ namespace AutoDistrictNameStations
         [SettingsUISection(section)]
         public string stationFormat { get; set; } = "";
 
+        [SettingsUISection(section)]
+        public bool allowUnique { get; set; } = false;
+
         // Transport stations
         [SettingsUIDisplayName("Enable")]
         [SettingsUISection(transportSection)]

@@ -43,7 +43,7 @@ The mod supports the automatic naming of various building types, including but n
 
 - *City Parks*
 		
-Unique buildings are excluded.
+Unique buildings are excluded by default, but there is an option to allow this kind of buildings to be renamed using this mod.
 
 ## Available Settings
 
@@ -99,13 +99,13 @@ After clickin Yes, it can take the game a few seconds to process all buildings a
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.4" />
+	<ModVersion Value="1.5.0" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.1.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Added a button that renames all existings buildings" />
+	<ChangeLog Value="Added the possibility of allowing or disabling the renaming of unique buildings" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->

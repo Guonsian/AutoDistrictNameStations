@@ -44,7 +44,6 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                 {
                     ComponentType.ReadOnly<Deleted>(),
                     ComponentType.ReadOnly<Temp>(),
-                    ComponentType.ReadOnly<UniqueObject>(), 
                     ComponentType.ReadOnly<OutsideConnection>(),
                     ComponentType.ReadOnly<DistrictNamedBuilding>()
                 }
@@ -61,7 +60,6 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                 {
                     ComponentType.ReadOnly<Deleted>(),
                     ComponentType.ReadOnly<Temp>(),
-                    ComponentType.ReadOnly<UniqueObject>(), 
                     ComponentType.ReadOnly<OutsideConnection>(),
                     ComponentType.ReadOnly<DistrictNamedBuilding>()
                 }
@@ -117,6 +115,11 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                 if (buildingData[0] != null)
                 {
                     var previousName = Mod.GameNameSystem.GetRenderedLabelName(targetBuildingEntities[i]);
+
+                    if (!_modOptions.allowUnique && EntityManager.HasComponent<UniqueObject>(targetBuildingEntities[i]))
+                    {
+                        return;
+                    }
                     
                     var relevantStations = _otherRelevantBuildings.ToEntityArray(Allocator.Temp);
                     

@@ -36,6 +36,12 @@
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationFormat]":
     "You can also change the format in the configuration file %AppData%\\..\\LocalLow\\Colossal Order\\Cities Skylines II\\AutoDistrictNameStations.coc, the {district} is always required",
 
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowUnique]":
+  "Allow Unique Buildings",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowUnique]":
+  "Option to allow the renaming of unique buildings based on district or street",
+
+
   "Options.OPTION[Enable]":
     "Enable",
   "Options.OPTION[ApplyLabel]":

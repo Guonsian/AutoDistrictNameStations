@@ -20,6 +20,7 @@ using Unity.Entities;
 using OutsideConnection = Game.Net.OutsideConnection;
 using TransportStation = Game.Buildings.TransportStation;
 using TransportStop = Game.Prefabs.TransportStop;
+using UniqueObject = Game.Objects.UniqueObject;
 
 
 namespace AutoDistrictNameStations.Systems
@@ -189,6 +190,12 @@ namespace AutoDistrictNameStations.Systems
                 try
                 {
                     var transportStation = transportStations[i];
+                    
+                    if (!Mod.ModCustomOptions.allowUnique && EntityManager.HasComponent<UniqueObject>(transportStation))
+                    {
+                        return;
+                    }
+                    
                     var stationDetails = getStationDetail(transportStation); //[0] district [1] stationType
                     string districtName  = stationDetails[0];
                     Mod.log.Info("Station details:" + stationDetails[0] + " - " + stationDetails[1]);

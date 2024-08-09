@@ -34,9 +34,14 @@
   "Distrito or calle",
 
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeStations]":
-  "Habilita que se pueda cmabiar el nombre de las estaciones",
+  "Habilita que se pueda cambiar el nombre de las estaciones",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationsApplyTo]":
   "Selecciona el compartamiento para la asignación de los nombres",
+
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowUnique]":
+  "Habilita edificios unicos",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowUnique]":
+  "Opción que habilita el proceso de renmombramiento en edificios únicos basados en el distrito o calle",
 
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.changeDeathsCare]":
   "Habilita que se pueda cmabiar el nombre de deaths care facilities",
