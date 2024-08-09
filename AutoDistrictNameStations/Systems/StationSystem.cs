@@ -170,6 +170,25 @@ namespace AutoDistrictNameStations.Systems
         {
             UpdateOperation(true);
         }
+
+        private void UpdateStreetname(Entity transportStation, string previousName, Dictionary<Entity, string> stations)
+        {
+            Building transportBuilding = EntityManager.GetComponentData<Building>(transportStation);
+
+            Aggregated aggregated =
+                EntityManager.GetComponentData<Aggregated>(transportBuilding.m_RoadEdge);
+            string streetName = Mod.GameNameSystem.GetRenderedLabelName(aggregated.m_Aggregate);
+                                
+            if (!previousName.Contains(streetName))
+            {
+                Mod.log.Info("Added street name");
+                Mod.GameNameSystem.SetCustomName(transportStation,
+                    Mod.ModCustomOptions.stationFormat.Replace("{district}", streetName)
+                        .Replace("{station}", previousName));
+                EntityManager.AddComponentData(transportStation, new DistrictNamedBuilding());
+            }
+            stations.Add(transportStation, streetName);
+        }
         
         private void UpdateOperation(bool allStations=false)  
         {
@@ -200,13 +219,10 @@ namespace AutoDistrictNameStations.Systems
                     string districtName  = stationDetails[0];
                     Mod.log.Info("Station details:" + stationDetails[0] + " - " + stationDetails[1]);
                     
-                    if (stationDetails[0] != null)
+                    var previousName = Mod.GameNameSystem.GetRenderedLabelName(transportStation);
+                    
+                    if (stationDetails[0] != null) // No district name found
                     {
-                        
-                        var previousName = Mod.GameNameSystem.GetRenderedLabelName(transportStation);
-                        //_log.Info("Previous name:" + previousName);
-                        
-                        //_log.Info();
                         if (!previousName.Contains(districtName))
                         {
                             var relevantStations = _allStations.ToEntityArray(Allocator.Temp);
@@ -238,21 +254,7 @@ namespace AutoDistrictNameStations.Systems
                             }
                             else
                             {
-                                Building transportBuilding = EntityManager.GetComponentData<Building>(transportStation);
-
-                                Aggregated aggregated =
-                                    EntityManager.GetComponentData<Aggregated>(transportBuilding.m_RoadEdge);
-                                string streetName = Mod.GameNameSystem.GetRenderedLabelName(aggregated.m_Aggregate);
-                                
-                                if (!previousName.Contains(streetName))
-                                {
-                                    Mod.log.Info("Added street name");
-                                    Mod.GameNameSystem.SetCustomName(transportStation,
-                                        Mod.ModCustomOptions.stationFormat.Replace("{district}", streetName)
-                                            .Replace("{station}", previousName));
-                                    EntityManager.AddComponentData(transportStation, new DistrictNamedBuilding());
-                                }
-                                stations.Add(transportStation, streetName);
+                                UpdateStreetname(transportStation, previousName, stations);
                             }
                             
                         }
@@ -261,7 +263,14 @@ namespace AutoDistrictNameStations.Systems
                             Mod.log.Info("Station updated that had the district name");
                             stations.Add(transportStation, districtName);
                         }
-                    } 
+                    }
+                    else
+                    {
+                        if (Mod.ModCustomOptions.allowStreetnaming)
+                        {
+                            UpdateStreetname(transportStation, previousName, stations);
+                        }
+                    }
                 }
                 catch (Exception ex) // The transportStops will cause an error as they do not provide currentDistrict component
                 {

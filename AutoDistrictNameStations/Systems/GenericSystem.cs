@@ -91,6 +91,24 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
         {
             UpdateOperation(true);
         }
+
+        private void UpdateStreetname(Entity targetBuildingEntity, string previousName)
+        {
+            Building transportBuilding = EntityManager.GetComponentData<Building>(targetBuildingEntity);
+
+            Aggregated aggregated =
+                EntityManager.GetComponentData<Aggregated>(transportBuilding.m_RoadEdge);
+            var streetName = Mod.GameNameSystem.GetRenderedLabelName(aggregated.m_Aggregate);
+
+            if (streetName.Length > 0)
+            {
+                Mod.GameNameSystem.SetCustomName(targetBuildingEntity,
+                    _modOptions.stationFormat.Replace("{district}", streetName)
+                        .Replace("{station}", previousName));
+                EntityManager.AddComponentData(targetBuildingEntity, componentData: new DistrictNamedBuilding());
+
+            }
+        }
         
         private void UpdateOperation(bool allBuildings = false)
         {
@@ -112,9 +130,10 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                 var buildingData = BuildingDetails.getBuildingDetails(targetBuildingEntities[i], EntityManager);
                 
                 _log.Info(buildingData[0] + " - " + buildingData[1]);
+                var previousName = Mod.GameNameSystem.GetRenderedLabelName(targetBuildingEntities[i]);
+                
                 if (buildingData[0] != null)
                 {
-                    var previousName = Mod.GameNameSystem.GetRenderedLabelName(targetBuildingEntities[i]);
 
                     if (!_modOptions.allowUnique && EntityManager.HasComponent<UniqueObject>(targetBuildingEntities[i]))
                     {
@@ -150,23 +169,16 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
                     }
                     else //applyTo == 2
                     {
-                        Building transportBuilding = EntityManager.GetComponentData<Building>(targetBuildingEntities[i]);
-
-                        Aggregated aggregated =
-                            EntityManager.GetComponentData<Aggregated>(transportBuilding.m_RoadEdge);
-                        var streetName = Mod.GameNameSystem.GetRenderedLabelName(aggregated.m_Aggregate);
-
-                        if (streetName.Length > 0)
-                        {
-                            Mod.GameNameSystem.SetCustomName(targetBuildingEntities[i],
-                                _modOptions.stationFormat.Replace("{district}", streetName)
-                                    .Replace("{station}", previousName));
-                            EntityManager.AddComponentData(targetBuildingEntities[i], componentData: new DistrictNamedBuilding());
-
-                        }
-                                
+                        UpdateStreetname(targetBuildingEntities[i], previousName);
                     }
                     
+                }
+                else
+                {
+                    if (Mod.ModCustomOptions.allowStreetnaming)
+                    {
+                        UpdateStreetname(targetBuildingEntities[i], previousName);
+                    }
                 }
             }
         }

@@ -38,6 +38,12 @@
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.stationsApplyTo]":
   "Selecciona el compartamiento para la asignación de los nombres",
 
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowStreetnaming]":
+  "Habilita nombre de calle sin distrito",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowStreetnaming]":
+  "Opción para habilitar el renombramiento de edificios por el nombre de calle, cuando hay distrito",
+
+
   "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowUnique]":
   "Habilita edificios unicos",
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowUnique]":

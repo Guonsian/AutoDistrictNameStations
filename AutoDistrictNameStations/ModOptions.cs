@@ -42,6 +42,9 @@ namespace AutoDistrictNameStations
 
         [SettingsUISection(section)]
         public bool allowUnique { get; set; } = false;
+        
+        [SettingsUISection(section)]
+        public bool allowStreetnaming { get; set; } = false;
 
         // Transport stations
         [SettingsUIDisplayName("Enable")]

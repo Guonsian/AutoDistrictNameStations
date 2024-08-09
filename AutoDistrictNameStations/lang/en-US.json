@@ -41,7 +41,14 @@
   "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowUnique]":
   "Option to allow the renaming of unique buildings based on district or street",
 
+  "Options.OPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowStreetnaming]":
+  "Allow Street naming without district",
+  "Options.OPTION_DESCRIPTION[AutoDistrictNameStations.AutoDistrictNameStations.Mod.ModOptions.allowStreetnaming]":
+  "Option to allow the renaming of buildings based on street name when there is no district",
 
+
+  
+  
   "Options.OPTION[Enable]":
     "Enable",
   "Options.OPTION[ApplyLabel]":
