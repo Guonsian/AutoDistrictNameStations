@@ -56,7 +56,6 @@ namespace AutoDistrictNameStations
             updateSystem.UpdateBefore<GenericSystem<GarbageFacility, FirstDistrictGarbageFacility>>(SystemUpdatePhase.UIUpdate);
             updateSystem.UpdateBefore<GenericSystem<PostFacility, FirstDistrictPostFacility>>(SystemUpdatePhase.UIUpdate);
             updateSystem.UpdateBefore<GenericSystem<ParkingFacility, FirstDistrictParkingFacility>>(SystemUpdatePhase.UIUpdate);
-            
             _updateSystem = updateSystem;
         }
 

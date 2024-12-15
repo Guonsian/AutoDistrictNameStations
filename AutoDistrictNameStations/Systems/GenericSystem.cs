@@ -96,6 +96,12 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
         {
             Building transportBuilding = EntityManager.GetComponentData<Building>(targetBuildingEntity);
 
+            if (EntityManager.HasComponent<Extension>(targetBuildingEntity))
+            {
+                _log.Info("Extension in Generic system, not updating name");
+                return;
+            }
+
             Aggregated aggregated =
                 EntityManager.GetComponentData<Aggregated>(transportBuilding.m_RoadEdge);
             var streetName = Mod.GameNameSystem.GetRenderedLabelName(aggregated.m_Aggregate);
