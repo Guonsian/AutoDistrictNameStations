@@ -87,8 +87,7 @@ namespace AutoDistrictNameStations.Systems
                 None = new ComponentType[]
                 {
                     ComponentType.ReadOnly<Deleted>(),
-                    ComponentType.ReadOnly<Temp>(), 
-                    ComponentType.ReadOnly<TramStop>(),
+                    ComponentType.ReadOnly<Temp>(),
                     ComponentType.ReadOnly<DistrictNamedBuilding>()
                 }
             });
@@ -103,8 +102,7 @@ namespace AutoDistrictNameStations.Systems
                 None = new ComponentType[]
                 {
                     ComponentType.ReadOnly<Deleted>(),
-                    ComponentType.ReadOnly<Temp>(), 
-                    ComponentType.ReadOnly<TramStop>(),
+                    ComponentType.ReadOnly<Temp>(),
                     ComponentType.ReadOnly<DistrictNamedBuilding>()
                 }
             });
@@ -118,8 +116,7 @@ namespace AutoDistrictNameStations.Systems
                 None = new ComponentType[]
                 {
                     ComponentType.ReadOnly<Deleted>(),
-                    ComponentType.ReadOnly<Temp>(),
-                    ComponentType.ReadOnly<TramStop>()
+                    ComponentType.ReadOnly<Temp>()
                 }
             });
 

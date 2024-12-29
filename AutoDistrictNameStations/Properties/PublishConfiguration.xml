@@ -29,7 +29,7 @@ If the building is not within a district, it will *not* get a custom name.
 
 The mod supports the automatic naming of various building types, including but not limited to:
 
-- *Transport Stations*: Bus stations (excluding signs or shelters), Train Stations, Cargo Train Terminals, Overground Subway Stations, Underground Subway Stations, Harbors, Cargo Harbors, Airports, and International Airports.
+- *Transport Stations*: Bus stations (excluding signs or shelters), Train Stations, Cargo Train Terminals, Subway Stations, Harbors, Cargo Harbors, Airports, and International Airports. It also supports custom stations such as Tram Stations.
 
 - *Healthcare Facilities*: as Hospitals and deathcare facilities (cemetery), ...
 
@@ -99,13 +99,13 @@ After clickin Yes, it can take the game a few seconds to process all buildings a
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.6.0" />
+	<ModVersion Value="1.7.0" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.2.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Added the possibility of allowing or disabling the renaming based on street names without district" />
+	<ChangeLog Value="Added support for Custom Tram Stations" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->
