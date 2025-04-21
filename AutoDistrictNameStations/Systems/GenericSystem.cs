@@ -92,6 +92,11 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
             UpdateOperation(true);
         }
 
+        private bool HasParent(Entity targetBuildingEntity)
+        {
+            return (EntityManager.HasComponent<Owner>(targetBuildingEntity));
+        }
+
         private void UpdateStreetname(Entity targetBuildingEntity, string previousName)
         {
             Building transportBuilding = EntityManager.GetComponentData<Building>(targetBuildingEntity);
@@ -132,18 +137,27 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
 
             for (int i = 0; i < targetBuildingEntities.Length; i++)
             {
+
+                
                 _log.Info(targetBuildingEntities[i]);
                 var buildingData = BuildingDetails.getBuildingDetails(targetBuildingEntities[i], EntityManager);
                 
                 _log.Info(buildingData[0] + " - " + buildingData[1]);
                 var previousName = Mod.GameNameSystem.GetRenderedLabelName(targetBuildingEntities[i]);
                 
+                
+                if (HasParent(targetBuildingEntities[i]))
+                {
+                    _log.Info("Owner building detected, skipping naming");
+                    continue;
+                }
+                
                 if (buildingData[0] != null)
                 {
 
                     if (!_modOptions.allowUnique && EntityManager.HasComponent<UniqueObject>(targetBuildingEntities[i]))
                     {
-                        return;
+                        continue;
                     }
                     
                     var relevantStations = _otherRelevantBuildings.ToEntityArray(Allocator.Temp);
