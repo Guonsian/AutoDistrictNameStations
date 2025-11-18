@@ -99,13 +99,13 @@ After clickin Yes, it can take the game a few seconds to process all buildings a
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/autodistrictnamestations-code-mod.1651091/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.9.1" />
+	<ModVersion Value="1.9.2" />
 	<!--Recommended version of the base game to use the mod-->
-	<GameVersion Value="1.*" />
+	<GameVersion Value="1.3.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="75426" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog Value="Now sub buildings are not going to be renamed to avoid naming issues with l18n Everywhere" />
+	<ChangeLog Value="Avoiding a null exception because logger not init at game start" />
 	<!--ChangeLog>
 	</ChangeLog-->
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon-->

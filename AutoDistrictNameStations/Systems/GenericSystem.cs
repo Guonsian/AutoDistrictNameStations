@@ -129,6 +129,11 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : ComponentSystemBa
                 return;
             }
 
+            if (_log == null)
+            {
+                return;
+            }
+
             var applyTo = _modOptions.GetApplyTo<TAuxComponent>();
             
             _log.Info(applyTo);
