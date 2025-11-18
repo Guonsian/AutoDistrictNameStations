@@ -3,3 +3,5 @@
 *.DotSettings.*
 AutoDistrictNameStations/obj/*
 AutoDistrictNameStations/Library/*
+bin/
+AutoDistrictNameStations/bin/

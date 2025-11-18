@@ -41,12 +41,12 @@ namespace AutoDistrictNameStations
             {   
                 ModCustomOptions.stationFormat = "{district} {station}";
             }
-            
+
             GameNameSystem = World.DefaultGameObjectInjectionWorld.GetOrCreateSystemManaged<Game.UI.NameSystem>();
             
             // In UI.Update as we want to use the Game.UI.NameSystem 
             updateSystem.UpdateBefore<StationSystem>(SystemUpdatePhase.UIUpdate);
-            updateSystem.UpdateBefore<GenericSystem<Park, FirstDistrictPark>>(SystemUpdatePhase.UIUpdate);
+            updateSystem.UpdateBefore<GenericSystem<FireStation, FirstDistrictFireStation>>(SystemUpdatePhase.UIUpdate);
             updateSystem.UpdateBefore<GenericSystem<FireStation, FirstDistrictFireStation>>(SystemUpdatePhase.UIUpdate);
             updateSystem.UpdateBefore<GenericSystem<PoliceStation, FirstDistrictPoliceStation>>(SystemUpdatePhase.UIUpdate);
             updateSystem.UpdateBefore<GenericSystem<EmergencyShelter, FirstDistrictShelter>>(SystemUpdatePhase.UIUpdate);

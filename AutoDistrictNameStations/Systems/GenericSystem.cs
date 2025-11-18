@@ -13,7 +13,7 @@ using OutsideConnection = Game.Objects.OutsideConnection;
 
 namespace AutoDistrictNameStations.Systems;
 
-public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  where TAuxComponent : class, IComponentData, new()
+public partial class GenericSystem<TBuilding, TAuxComponent> : ComponentSystemBase  where TAuxComponent : class, IComponentData, new()
 {
     
         private EntityQuery _systemQuery;
@@ -82,7 +82,7 @@ public partial class GenericSystem<TBuilding, TAuxComponent> : GameSystemBase  w
             
         }
         
-        protected override void OnUpdate()
+        public override void Update()
         {
             UpdateOperation();
         }
